@@ -1,17 +1,18 @@
 import Card from "@/components/cart";
-import {  GetAllPosts, Post } from "@/lib/user.action";
+import {  GetSavedPost } from "@/lib/user.action";
 
 
 export default async function Home() {
-  const posts  = await GetAllPosts()
  
+ const posts = await GetSavedPost()
+ console.log(posts)
 return (
     <main className="flex min-h-screen flex-col items-center   ">
 {posts?.length !== 0     ? (
   <div className=" flex  gap-3 items-center flex-row justify-start   mt-10" >
 {posts?.map((post ,i  ) =>(
      <div  key={i} >
-<Card  posts ={post} isonSaved={false}/>            
+<Card  posts ={post} isonSaved={true}/>            
      </div>
 
 ))}
@@ -22,7 +23,8 @@ return (
   </div>
 )}
     </main>
-  );
+
+  )
 }
 
 
